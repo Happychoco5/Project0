@@ -2,8 +2,10 @@ package dev.terry.data;
 
 import dev.terry.app.App;
 import dev.terry.entities.Employee;
+import dev.terry.entities.Expense;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EmployeeDAOLocal implements EmployeeDAO{
@@ -22,7 +24,7 @@ public class EmployeeDAOLocal implements EmployeeDAO{
     }
 
     @Override
-    public Map<Integer, Employee> showAllEmployees() {
+    public Map<Integer, Employee> getAllEmployees() {
         return this.employeeTable;
     }
 
@@ -48,5 +50,11 @@ public class EmployeeDAOLocal implements EmployeeDAO{
         else {
             return true;
         }
+    }
+
+    @Override
+    public List<Expense> getAssignedExpenses() {
+
+        return null;
     }
 }

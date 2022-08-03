@@ -10,24 +10,28 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowAllExpensesHandler implements Handler {
+public class GetAllExpensesHandler implements Handler {
 
     @Override
     public void handle(@NotNull Context ctx) throws Exception {
-        List<String> stringList = new ArrayList<>();
-        System.out.println("Outside the for loop");
-        if(App.expenseList != null)
+        Gson gson = new Gson();
+        String status = ctx.queryParam("status");
+        if(status == null)
         {
+            List<String> stringList = new ArrayList<>();
             for(Expense e : App.expenseList){
                 String expense = e.toString();
                 stringList.add(expense);
             }
+            String json = gson.toJson(stringList);
+            ctx.json(json);
         }
-        else {
-            ctx.result("There are currently no items within the expenses list");
+        else
+        {
+            List<Expense> expenses = App.expenseService.getExpensesWithStatus(status);
+            String json = gson.toJson(expenses);
+            ctx.result(json);
+
         }
-        Gson gson = new Gson();
-        String json = gson.toJson(stringList);
-        ctx.json(json);
     }
 }

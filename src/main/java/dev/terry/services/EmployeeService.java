@@ -10,7 +10,7 @@ public interface EmployeeService {
     Employee addNewEmployee(Employee employee);
 
     //Get all employees
-    Map<Integer, Employee> showAllEmployees();
+    Map<Integer, Employee> getAllEmployees();
 
     Employee getEmployeeById(int id);
 

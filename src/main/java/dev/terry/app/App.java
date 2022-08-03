@@ -25,7 +25,7 @@ public class App {
 
         //Employee Routes
         CreateEmployeeHandler createEmployeeHandler = new CreateEmployeeHandler();
-        ShowAllEmployeesHandler showAllEmployeesHandler = new ShowAllEmployeesHandler();
+        GetAllEmployeesHandler showAllEmployeesHandler = new GetAllEmployeesHandler();
         GetEmployeeByIdHandler getEmployeeByIdHandler = new GetEmployeeByIdHandler();
         UpdateEmployeeHandler updateEmployeeHandler = new UpdateEmployeeHandler();
         DeleteEmployeeHandler deleteEmployeeHandler = new DeleteEmployeeHandler();
@@ -38,23 +38,23 @@ public class App {
 
         //Expense Routes
         CreateExpenseHandler createExpenseHandler = new CreateExpenseHandler();
-        ShowAllExpensesHandler showAllExpensesHandler = new ShowAllExpensesHandler();
-        GetExpensesWithStatusHandler expensesWithStatusHandler = new GetExpensesWithStatusHandler();
+        GetAllExpensesHandler getAllExpensesHandler = new GetAllExpensesHandler();
         GetExpenseByIDHandler getExpenseByID = new GetExpenseByIDHandler();
         UpdateExpenseByIDHandler updateExpenseByIDHandler = new UpdateExpenseByIDHandler();
         StatusHandler statusHandler = new StatusHandler();
+        DeleteExpenseHandler deleteExpenseHandler = new DeleteExpenseHandler();
 
         app.post("/expenses", createExpenseHandler); //Creates a new expense based on JSON file
-        app.get("/expenses", showAllExpensesHandler); //Returns all expenses
-        app.get("/expenses?status={status}", expensesWithStatusHandler); //Returns expenses with status.
+        app.get("/expenses", getAllExpensesHandler); //Returns all expenses
         app.get("/expenses/{id}", getExpenseByID); //Get expense with ID
         app.put("/expenses/{id}", updateExpenseByIDHandler); //Modify an expense based on id
         app.patch("/expenses/{id}/approve", statusHandler); //Change an expense's status to APPROVED
         app.patch("/expenses/{id}/deny", statusHandler); //Same as above, except to DENY
+        app.delete("/expenses/{id}", deleteExpenseHandler); //Deletes the expense with the id specified.
 
         //Final routes
-        app.get("/employees/{id}/expenses", null); //Get all expenses assigned to this employee.
-        app.post("/employees/{id}/expenses", null); //Create expense with employee {id} assigned
+        //app.get("/employees/{id}/expenses", null); //Get all expenses assigned to this employee.
+        //app.post("/employees/{id}/expenses", null); //Create expense with employee {id} assigned
 
         app.start();
     }

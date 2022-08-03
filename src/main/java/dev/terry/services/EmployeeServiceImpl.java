@@ -1,6 +1,5 @@
 package dev.terry.services;
 
-import dev.terry.app.App;
 import dev.terry.data.EmployeeDAO;
 import dev.terry.entities.Employee;
 
@@ -25,8 +24,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Map<Integer, Employee> showAllEmployees() {
-        return this.employeeDAO.showAllEmployees();
+    public Map<Integer, Employee> getAllEmployees() {
+        return this.employeeDAO.getAllEmployees();
     }
 
     @Override

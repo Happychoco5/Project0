@@ -25,7 +25,7 @@ public class EmployeeTests {
     @Order(2)
     void show_all_employees()
     {
-        Assertions.assertNotEquals(0, employeeDAO.showAllEmployees().size());
+        Assertions.assertNotEquals(0, employeeDAO.getAllEmployees().size());
     }
 
     @Test

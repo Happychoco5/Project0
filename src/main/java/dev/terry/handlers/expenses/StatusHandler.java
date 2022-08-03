@@ -2,7 +2,7 @@ package dev.terry.handlers.expenses;
 
 import dev.terry.app.App;
 import dev.terry.entities.Expense;
-import dev.terry.entities.Status;
+import dev.terry.entities.enums.Status;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import org.jetbrains.annotations.NotNull;
@@ -21,12 +21,12 @@ public class StatusHandler implements Handler {
             {
                 //We approve the expense.
                 SetStatus(expense, Status.APPROVED);
-                ctx.result("");
+                ctx.result("Successfully set expense " + expense.getId() + " to status APPROVED.");
             }
             else if(ctx.path().toLowerCase().contains("deny")){
                 //We deny the expense
                 SetStatus(expense, Status.DENIED);
-                ctx.result("");
+                ctx.result("Successfully set expense " + expense.getId() + " to status DENIED.");
             }
         }
         else {

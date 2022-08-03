@@ -1,9 +1,8 @@
 package dev.terry.services;
 
-import dev.terry.app.App;
 import dev.terry.data.ExpenseDAO;
 import dev.terry.entities.Expense;
-import dev.terry.entities.Status;
+import dev.terry.entities.enums.Status;
 
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class ExpenseServiceImpl implements ExpenseService{
     }
 
     @Override
-    public List<Expense> getExpensesWithStatus(Status status){
+    public List<Expense> getExpensesWithStatus(String status){
         return expenseDAO.getExpensesWithStatus(status);
     }
 
@@ -45,6 +44,11 @@ public class ExpenseServiceImpl implements ExpenseService{
     @Override
     public Expense updateStatus(Expense expense, Status status) {
         return this.expenseDAO.updateStatus(expense, status);
+    }
+
+    @Override
+    public boolean deleteExpense(int id) {
+        return this.expenseDAO.deleteExpense(id);
     }
 
     void validateExpense(Expense expense){

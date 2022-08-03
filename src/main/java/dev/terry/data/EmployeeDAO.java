@@ -1,7 +1,9 @@
 package dev.terry.data;
 
 import dev.terry.entities.Employee;
+import dev.terry.entities.Expense;
 
+import java.util.List;
 import java.util.Map;
 
 public interface EmployeeDAO {
@@ -10,7 +12,7 @@ public interface EmployeeDAO {
     Employee createEmployee(Employee employee);
 
     //Show all employees
-    Map<Integer, Employee> showAllEmployees();
+    Map<Integer, Employee> getAllEmployees();
 
     //Get employee by ID
     Employee getEmployeeByID(int id);
@@ -20,4 +22,6 @@ public interface EmployeeDAO {
 
     //Delete an employee
     boolean deleteEmployee(int id);
+
+    List<Expense> getAssignedExpenses();
 }

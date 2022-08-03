@@ -6,13 +6,13 @@ import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import org.jetbrains.annotations.NotNull;
 
-public class ShowAllEmployeesHandler implements Handler {
+public class GetAllEmployeesHandler implements Handler {
 
     @Override
     public void handle(@NotNull Context ctx) throws Exception {
         Gson gson = new Gson();
 
-        String json = gson.toJson(App.employeeService.showAllEmployees());
+        String json = gson.toJson(App.employeeService.getAllEmployees());
         ctx.result("Here are all current employees: " + json);
     }
 }

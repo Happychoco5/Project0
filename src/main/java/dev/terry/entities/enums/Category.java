@@ -1,4 +1,4 @@
-package dev.terry.entities;
+package dev.terry.entities.enums;
 
 public enum Category {
     TRAVEL,

@@ -2,7 +2,7 @@ package dev.terry.data;
 
 import dev.terry.app.App;
 import dev.terry.entities.Expense;
-import dev.terry.entities.Status;
+import dev.terry.entities.enums.Status;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class ExpenseDAOLocal implements ExpenseDAO{
     }
 
     @Override
-    public List<Expense> getExpensesWithStatus(Status status) {
+    public List<Expense> getExpensesWithStatus(String status) {
         List<Expense> tempList = new ArrayList<>();
         for(Expense e : App.expenseList){
             if(e.getStatus().name().equals(status))
@@ -84,6 +84,16 @@ public class ExpenseDAOLocal implements ExpenseDAO{
         expense.setStatus(status);
         App.expenseList.set(index, expense);
         return expense;
+    }
+
+    @Override
+    public boolean deleteExpense(int id) {
+        if(getExpenseWithId(id) != null){
+            //Delete the expense, return true
+            App.expenseList.remove(getExpenseWithId(id));
+            return true;
+        }
+        return false;
     }
 
 }

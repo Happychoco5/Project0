@@ -1,5 +1,8 @@
 package dev.terry.entities;
 
+import dev.terry.entities.enums.Category;
+import dev.terry.entities.enums.Status;
+
 public class Expense {
     private int id; //ID of the expense, cannot be 0
     private String description;
