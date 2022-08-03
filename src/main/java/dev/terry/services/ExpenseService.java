@@ -15,5 +15,7 @@ public interface ExpenseService {
 
     Expense getExpenseWithId(int id);
 
-    Expense updateExpense(int id);
+    Expense updateExpense(Expense expense);
+
+    Expense updateStatus(Expense expense, Status status);
 }

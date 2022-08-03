@@ -37,9 +37,14 @@ public class ExpenseServiceImpl implements ExpenseService{
     }
 
     @Override
-    public Expense updateExpense(int id) {
-        validateExpense(this.expenseDAO.getExpenseWithId(id));
-        return this.expenseDAO.updateExpense(id);
+    public Expense updateExpense(Expense expense) {
+        validateExpense(expense);
+        return this.expenseDAO.updateExpense(expense);
+    }
+
+    @Override
+    public Expense updateStatus(Expense expense, Status status) {
+        return this.expenseDAO.updateStatus(expense, status);
     }
 
     void validateExpense(Expense expense){

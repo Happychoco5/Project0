@@ -22,7 +22,8 @@ public class UpdateExpenseByIDHandler implements Handler {
             {
                 if(expense.getId() == id)
                 {
-                    App.expenseService.updateExpense(id);
+                    //Throw in the expense that we want to create from the ctx body
+                    App.expenseService.updateExpense(expense);
                     ctx.result("Successfully updated the expense with ID of " + id + " " + json);
                 }
                 else {

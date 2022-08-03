@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExpenseDAOLocal implements ExpenseDAO{
-    private List<Expense> expenseList = new ArrayList<>();
+    //private List<Expense> expenseList = new ArrayList<>();
 
     @Override
     public Expense createExpense(Expense expense) {
@@ -53,17 +53,37 @@ public class ExpenseDAOLocal implements ExpenseDAO{
     }
 
     @Override
-    public Expense updateExpense(int id) {
-        for(Expense e : App.expenseList)
+    public Expense updateExpense(Expense expense) {
+        int index = -1;
+        for(int i = 0; i < App.expenseList.size(); i++)
         {
-            if(e.getId() == id){
+            if(App.expenseList.get(i).getId() == expense.getId()){
                 //This is the one we want to modify
-                return e;
+                //Delete this
+                index = i;
+                break;
             }
         }
-        //If we can't find it, return null
-        return null;
+        expense.setStatus(Status.PENDING);
+        App.expenseList.set(index, expense);
+        return expense;
     }
 
+    @Override
+    public Expense updateStatus(Expense expense, Status status) {
+        int index = -1;
+        for(int i = 0; i < App.expenseList.size(); i++)
+        {
+            if(App.expenseList.get(i).getId() == expense.getId()){
+                //This is the one we want to modify
+                //Delete this
+                index = i;
+                break;
+            }
+        }
+        expense.setStatus(status);
+        App.expenseList.set(index, expense);
+        return expense;
+    }
 
 }

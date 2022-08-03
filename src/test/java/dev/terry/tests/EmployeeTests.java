@@ -3,10 +3,9 @@ package dev.terry.tests;
 import dev.terry.data.EmployeeDAO;
 import dev.terry.data.EmployeeDAOLocal;
 import dev.terry.entities.Employee;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class EmployeeTests {
     static EmployeeDAO employeeDAO = new EmployeeDAOLocal();
 

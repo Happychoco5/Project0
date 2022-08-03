@@ -1,6 +1,6 @@
 package dev.terry.entities;
 
-public enum Type {
+public enum Category {
     TRAVEL,
     FOOD,
     MISC

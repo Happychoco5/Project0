@@ -3,13 +3,16 @@ package dev.terry.entities;
 public class Expense {
     private int id; //ID of the expense, cannot be 0
     private String description;
-    private Type type;
+    private Category type;
     private double amount; //Amount of the expense, cannot be 0
     //private boolean isModifiable = true;
     private int employeeAssigned; //Get the employee assigned via ID, cannot be 0
     private Status status; //Displays the status as either PENDING, APPROVED or DENIED
 
-    public Expense(int id, String description, Type type, double amount, int employeeAssigned) {
+    public Expense(){
+
+    }
+    public Expense(int id, String description, Category type, double amount, int employeeAssigned) {
         this.id = id;
         this.description = description;
         this.type = type;

@@ -28,4 +28,10 @@ public class ExpenseTests {
         String status = "PENDING";
         Assertions.assertEquals(status, App.expenseList.get(0).getStatus());
     }
+
+    @Test
+    void get_expense_by_id()
+    {
+
+    }
 }

@@ -42,12 +42,19 @@ public class App {
         GetExpensesWithStatusHandler expensesWithStatusHandler = new GetExpensesWithStatusHandler();
         GetExpenseByIDHandler getExpenseByID = new GetExpenseByIDHandler();
         UpdateExpenseByIDHandler updateExpenseByIDHandler = new UpdateExpenseByIDHandler();
+        StatusHandler statusHandler = new StatusHandler();
 
         app.post("/expenses", createExpenseHandler); //Creates a new expense based on JSON file
         app.get("/expenses", showAllExpensesHandler); //Returns all expenses
         app.get("/expenses?status={status}", expensesWithStatusHandler); //Returns expenses with status.
         app.get("/expenses/{id}", getExpenseByID); //Get expense with ID
         app.put("/expenses/{id}", updateExpenseByIDHandler); //Modify an expense based on id
+        app.patch("/expenses/{id}/approve", statusHandler); //Change an expense's status to APPROVED
+        app.patch("/expenses/{id}/deny", statusHandler); //Same as above, except to DENY
+
+        //Final routes
+        app.get("/employees/{id}/expenses", null); //Get all expenses assigned to this employee.
+        app.post("/employees/{id}/expenses", null); //Create expense with employee {id} assigned
 
         app.start();
     }
