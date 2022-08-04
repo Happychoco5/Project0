@@ -22,6 +22,4 @@ public interface EmployeeDAO {
 
     //Delete an employee
     boolean deleteEmployee(int id);
-
-    List<Expense> getAssignedExpenses();
 }

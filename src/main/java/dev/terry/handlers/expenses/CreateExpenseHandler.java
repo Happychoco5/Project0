@@ -27,11 +27,11 @@ public class CreateExpenseHandler implements Handler {
             }
         }
 
-        if(App.employeeService.getEmployeeById(expense.getEmployeeAssigned()) == null)
+        if(App.employeeService.getEmployeeById(expense.getEmployeeId()) == null)
         {
             //Employee assigned does not exist.
             ctx.status(400);
-            ctx.result("There is no employee with ID of " + expense.getEmployeeAssigned() + ". Please try again with a different ID");
+            ctx.result("There is no employee with ID of " + expense.getEmployeeId() + ". Please try again with a different ID");
             return;
         }
 
@@ -39,7 +39,7 @@ public class CreateExpenseHandler implements Handler {
         App.expenseService.createExpense(expense);
         ctx.status(201);
         ctx.result("Successfully created expense with employee " +
-                App.employeeService.getEmployeeById(expense.getEmployeeAssigned()).getFname() + " " +
-                App.employeeService.getEmployeeById(expense.getEmployeeAssigned()).getLname() + " assigned: " + json);
+                App.employeeService.getEmployeeById(expense.getEmployeeId()).getFname() + " " +
+                App.employeeService.getEmployeeById(expense.getEmployeeId()).getLname() + " assigned: " + json);
     }
 }

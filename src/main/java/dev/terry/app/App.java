@@ -43,6 +43,8 @@ public class App {
         UpdateExpenseByIDHandler updateExpenseByIDHandler = new UpdateExpenseByIDHandler();
         StatusHandler statusHandler = new StatusHandler();
         DeleteExpenseHandler deleteExpenseHandler = new DeleteExpenseHandler();
+        GetAssignedExpenses getAssignedExpenses = new GetAssignedExpenses();
+        CreateExpenseWithEmployeeAssigned createExpenseWithEmployeeAssigned = new CreateExpenseWithEmployeeAssigned();
 
         app.post("/expenses", createExpenseHandler); //Creates a new expense based on JSON file
         app.get("/expenses", getAllExpensesHandler); //Returns all expenses
@@ -53,8 +55,8 @@ public class App {
         app.delete("/expenses/{id}", deleteExpenseHandler); //Deletes the expense with the id specified.
 
         //Final routes
-        //app.get("/employees/{id}/expenses", null); //Get all expenses assigned to this employee.
-        //app.post("/employees/{id}/expenses", null); //Create expense with employee {id} assigned
+        app.get("/employees/{id}/expenses", getAssignedExpenses); //Get all expenses assigned to this employee.
+        app.post("/employees/{id}/expenses", createExpenseWithEmployeeAssigned); //Create expense with employee {id} assigned
 
         app.start();
     }

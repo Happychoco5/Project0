@@ -21,7 +21,13 @@ public class ExpenseDAOLocal implements ExpenseDAO{
     }
 
     @Override
-    public List<Expense> showAllExpenses() {
+    public Expense createExpenseWithEmployee(Expense expense, int employeeId) {
+        expense.setEmployeeId(employeeId);
+        return createExpense(expense);
+    }
+
+    @Override
+    public List<Expense> getAllExpenses() {
 
         return App.expenseList;
     }
@@ -94,6 +100,19 @@ public class ExpenseDAOLocal implements ExpenseDAO{
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<Expense> getAssignedExpenses(int id) {
+        List<Expense> myExpenses = new ArrayList<>();
+        for(Expense e : App.expenseList)
+        {
+            if(e.getEmployeeId() == id){
+                //Place into list
+                myExpenses.add(e);
+            }
+        }
+        return myExpenses;
     }
 
 }

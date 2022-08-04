@@ -9,18 +9,34 @@ public class Expense {
     private Category type;
     private double amount; //Amount of the expense, cannot be 0
     //private boolean isModifiable = true;
-    private int employeeAssigned; //Get the employee assigned via ID, cannot be 0
+    private int employeeId; //Get the employee assigned via ID, cannot be 0
     private Status status; //Displays the status as either PENDING, APPROVED or DENIED
+
+    public Category getType() {
+        return type;
+    }
+
+    public void setType(Category type) {
+        this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Expense(){
 
     }
-    public Expense(int id, String description, Category type, double amount, int employeeAssigned) {
+    public Expense(int id, String description, Category type, double amount, int employeeId) {
         this.id = id;
         this.description = description;
         this.type = type;
         this.amount = amount;
-        this.employeeAssigned = employeeAssigned;
+        this.employeeId = employeeId;
     }
 
     public Status getStatus() {
@@ -47,12 +63,12 @@ public class Expense {
         this.amount = amount;
     }
 
-    public int getEmployeeAssigned() {
-        return employeeAssigned;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployeeAssigned(int employeeAssigned) {
-        this.employeeAssigned = employeeAssigned;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     @Override
@@ -62,7 +78,7 @@ public class Expense {
                 ", description='" + description + '\'' +
                 ", type=" + type +
                 ", amount=" + amount +
-                ", employeeAssigned=" + employeeAssigned +
+                ", employeeAssigned=" + employeeId +
                 ", status=" + status +
                 '}';
     }

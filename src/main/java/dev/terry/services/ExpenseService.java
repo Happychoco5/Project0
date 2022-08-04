@@ -9,7 +9,9 @@ public interface ExpenseService {
 
     Expense createExpense(Expense expense);
 
-    List<Expense> showAllExpenses();
+    Expense createExpenseWithEmployee(Expense expense, int employeeId);
+
+    List<Expense> getAllExpenses();
 
     List<Expense> getExpensesWithStatus(String status);
 
@@ -20,4 +22,6 @@ public interface ExpenseService {
     Expense updateStatus(Expense expense, Status status);
 
     boolean deleteExpense(int id);
+
+    List<Expense> getAssignedExpenses(int id);
 }

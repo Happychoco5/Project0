@@ -6,7 +6,7 @@ import dev.terry.entities.Employee;
 import org.junit.jupiter.api.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class EmployeeTests {
+public class EmployeeDAOTests {
     static EmployeeDAO employeeDAO = new EmployeeDAOLocal();
 
     @Test
@@ -39,7 +39,7 @@ public class EmployeeTests {
     @Test
     @Order(4)
     void update_employee(){
-        Employee employeev2 = new Employee(2, "Brab", "Frunk");
+        Employee employeev2 = new Employee(1, "Brab", "Frunk");
         Employee savedEmployee = employeeDAO.updateEmployee(employeev2);
         Employee employee = employeeDAO.getEmployeeByID(1);
         Assertions.assertEquals("Brab", employee.getFname());

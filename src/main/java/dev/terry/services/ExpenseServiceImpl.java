@@ -21,8 +21,15 @@ public class ExpenseServiceImpl implements ExpenseService{
     }
 
     @Override
-    public List<Expense> showAllExpenses() {
-        return expenseDAO.showAllExpenses();
+    public Expense createExpenseWithEmployee(Expense expense, int employeeId) {
+        validateExpense(expense);
+
+        return expenseDAO.createExpenseWithEmployee(expense, employeeId);
+    }
+
+    @Override
+    public List<Expense> getAllExpenses() {
+        return expenseDAO.getAllExpenses();
     }
 
     @Override
@@ -51,23 +58,21 @@ public class ExpenseServiceImpl implements ExpenseService{
         return this.expenseDAO.deleteExpense(id);
     }
 
+    @Override
+    public List<Expense> getAssignedExpenses(int id) {
+        return this.expenseDAO.getAssignedExpenses(id);
+    }
+
     void validateExpense(Expense expense){
         if(expense.getId() == 0){
             throw new RuntimeException("Cannot create an expense with an ID of 0");
         }
-        if(expense.getAmount() == 0){
-            throw new RuntimeException("Cannot create an expense with amount of 0");
+        if(expense.getAmount() <= 0){
+            throw new RuntimeException("Cannot create an expense with amount of, or lower than, 0");
         }
-        if(expense.getEmployeeAssigned() == 0){
+        if(expense.getEmployeeId() == 0){
             throw new RuntimeException("Cannot set the employee assigned to 0");
         }
-        //We cannot validate against this.
-//        for(Expense e : App.expenseList){
-//            if(e.getId() == expense.getId())
-//            {
-//                throw new RuntimeException("Expense with that ID already exists.");
-//            }
-//        }
     }
 
 
