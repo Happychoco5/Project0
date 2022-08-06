@@ -15,18 +15,10 @@ public class CreateEmployeeHandler implements Handler {
         Gson gson = new Gson();
         Employee employee = gson.fromJson(json, Employee.class);
 
-        if(App.employeeService.getEmployeeById(employee.getId()) == null)
-        {
-            Employee createdEmployee = App.employeeService.addNewEmployee(employee);
-            String employeeJson = gson.toJson(createdEmployee);
+        Employee createdEmployee = App.employeeService.addNewEmployee(employee);
+        String employeeJson = gson.toJson(createdEmployee);
 
-            ctx.status(201);
-            ctx.result("Successfully created a new employee: \n" + employeeJson);
-        }
-        else
-        {
-            ctx.status(400);
-            ctx.result("There is already an employee with the ID: " + employee.getId() + ". Could not add this employee to the server.");
-        }
+        ctx.status(201);
+        ctx.result("Successfully created a new employee: \n" + employeeJson);
     }
 }
