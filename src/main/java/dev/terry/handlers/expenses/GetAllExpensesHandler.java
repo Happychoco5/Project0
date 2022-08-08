@@ -18,18 +18,13 @@ public class GetAllExpensesHandler implements Handler {
         String status = ctx.queryParam("status");
         if(status == null)
         {
-            List<String> stringList = new ArrayList<>();
-            for(Expense e : App.expenseList){
-                String expense = e.toString();
-                stringList.add(expense);
-            }
-            String json = gson.toJson(stringList);
+            String json = gson.toJson(App.expenseService.getAllExpenses());
             ctx.json(json);
         }
         else
         {
-            List<Expense> expenses = App.expenseService.getExpensesWithStatus(status);
-            String json = gson.toJson(expenses);
+            //List<Expense> expenses = App.expenseService.getExpensesWithStatus(status);
+            String json = gson.toJson(App.expenseService.getExpensesWithStatus(status));
             ctx.result(json);
 
         }

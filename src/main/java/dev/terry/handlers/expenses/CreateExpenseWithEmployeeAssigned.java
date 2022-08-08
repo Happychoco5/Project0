@@ -16,7 +16,7 @@ public class CreateExpenseWithEmployeeAssigned implements Handler {
             String json = ctx.body();
             Expense expense = gson.fromJson(json, Expense.class);
             if(expense.getEmployeeId() == id){
-                for(Expense e : App.expenseList) {
+                for(Expense e : App.expenseService.getAllExpenses()) {
                     //Check to make sure the expense with ID does not exist.
                     if (e.getId() == expense.getId()) {
                         //Expense already exists

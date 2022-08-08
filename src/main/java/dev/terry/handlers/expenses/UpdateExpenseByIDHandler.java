@@ -14,27 +14,34 @@ public class UpdateExpenseByIDHandler implements Handler {
         Gson gson = new Gson();
         String json = ctx.body();
 
-
         if(App.expenseService.getExpenseWithId(id) != null)
         {
             Expense expense = gson.fromJson(json, Expense.class);
-            if(App.expenseService.getExpenseWithId(id).getStatus().name().equals("PENDING"))
+            if(App.employeeService.getEmployeeById(expense.getEmployeeId()) != null)
             {
-                if(expense.getId() == id)
+                if(App.expenseService.getExpenseWithId(id).getStatus().name().equals("PENDING"))
                 {
-                    //Throw in the expense that we want to create from the ctx body
-                    App.expenseService.updateExpense(expense);
-                    ctx.result("Successfully updated the expense with ID of " + id + " " + json);
+                    if(expense.getId() == id)
+                    {
+                        //Throw in the expense that we want to create from the ctx body
+                        App.expenseService.updateExpense(expense);
+                        ctx.result("Successfully updated the expense with ID of " + id + " " + json);
+                    }
+                    else {
+                        ctx.status(400);
+                        ctx.result("Expense ID mismatch. Cannot update expense with " + id + "  ID inputted is " + expense.getId());
+                    }
                 }
                 else {
                     ctx.status(400);
-                    ctx.result("Expense ID mismatch. Cannot update expense with " + id + "because ID inputted is " + expense.getId());
+                    ctx.result("Cannot modify because this expense has already been APPROVED or DENIED");
                 }
             }
             else {
                 ctx.status(400);
-                ctx.result("Cannot modify because this expense has already been APPROVED or DENIED");
+                ctx.result("Employee ID mismatch. Cannot update expense with " + expense.getEmployeeId() + " because ID inputted is " + expense.getId());
             }
+
         }
         else {
             ctx.status(404);

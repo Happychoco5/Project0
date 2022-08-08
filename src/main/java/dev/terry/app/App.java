@@ -3,6 +3,7 @@ package dev.terry.app;
 import dev.terry.data.EmployeeDAOLocal;
 import dev.terry.data.EmployeeDAOPostgres;
 import dev.terry.data.ExpenseDAOLocal;
+import dev.terry.data.ExpenseDAOPostgres;
 import dev.terry.entities.Expense;
 import dev.terry.handlers.employees.*;
 import dev.terry.handlers.expenses.*;
@@ -17,7 +18,7 @@ import java.util.List;
 
 public class App {
     public final static EmployeeService employeeService = new EmployeeServiceImpl(new EmployeeDAOPostgres());
-    public final static ExpenseService expenseService = new ExpenseServiceImpl(new ExpenseDAOLocal());
+    public final static ExpenseService expenseService = new ExpenseServiceImpl(new ExpenseDAOPostgres());
 
     public static List<Expense> expenseList = new ArrayList<>();
 

@@ -48,6 +48,7 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
                 employee.setId(rs.getInt("id"));
                 employee.setFname(rs.getString("fName"));
                 employee.setLname(rs.getString("lName"));
+                System.out.println(employee);
 
                 employeeMap.put(employee.getId(), employee);
             }
@@ -68,14 +69,6 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
 
             ResultSet rs = preparedStatement.executeQuery();
 
-//            rs.last();
-//            int count = rs.getRow();
-//            rs.beforeFirst();
-//            if(count <= 0)
-//            {
-//                throw new ResourceNotFoundException("Could not find employee with id " + id);
-//            }
-
             if(!rs.next()){
                 throw new ResourceNotFoundException("Could not find employee with id " + id);
             }
@@ -83,7 +76,7 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
             Employee employee1 = new Employee();
             employee1.setId(rs.getInt("id"));
             employee1.setFname(rs.getString("fName"));
-            employee1.setLname("lName");
+            employee1.setLname(rs.getString("lName"));
 
             return employee1;
         }

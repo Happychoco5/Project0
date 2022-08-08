@@ -15,7 +15,7 @@ public class CreateExpenseHandler implements Handler {
 
         Expense expense = gson.fromJson(json, Expense.class);
 
-        for(Expense e : App.expenseList)
+        for(Expense e : App.expenseService.getAllExpenses())
         {
             //Check to make sure the expense with ID does not exist.
             if(e.getId() == expense.getId())
