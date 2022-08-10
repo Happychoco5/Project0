@@ -107,7 +107,7 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
                 expense.setDescription(rs.getString("description"));
                 expense.setType(Category.valueOf(rs.getString("category")));
                 expense.setAmount(rs.getDouble("amount"));
-                expense.setId(rs.getInt("employeeId"));
+                expense.setEmployeeId(rs.getInt("employeeId"));
                 expense.setStatus(Status.valueOf(rs.getString("status")));
 
                 expenseList.add(expense);
@@ -127,25 +127,24 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
         {
             String sql = "select * from expense where id = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-
             preparedStatement.setInt(1, id);
 
             ResultSet rs = preparedStatement.executeQuery();
 
             if(!rs.next()){
-                throw new ResourceNotFoundException("Could not find expense with id " + id);
+                return null;
+                //throw new ResourceNotFoundExcept  ion("Could not find expense with id " + id);
             }
 
-            Expense expense = new Expense();
-
-            expense.setId(rs.getInt("id"));
-            expense.setDescription(rs.getString("description"));
-            expense.setType(Category.valueOf(rs.getString("category")));
-            expense.setAmount(rs.getDouble("amount"));
-            expense.setId(rs.getInt("employeeId"));
-            expense.setStatus(Status.valueOf(rs.getString("status")));
-            System.out.println(expense.getStatus());
-            return expense;
+            Expense expense1 = new Expense();
+            expense1.setId(rs.getInt("id"));
+            expense1.setDescription(rs.getString("description"));
+            expense1.setType(Category.valueOf(rs.getString("category")));
+            expense1.setAmount(rs.getDouble("amount"));
+            expense1.setEmployeeId(rs.getInt("employeeId"));
+            expense1.setStatus(Status.valueOf(rs.getString("status")));
+            System.out.println("The expense with the id: " + expense1.getId());
+            return expense1;
         }
         catch (SQLException e){
             e.printStackTrace();

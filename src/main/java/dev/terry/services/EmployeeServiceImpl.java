@@ -50,7 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         {
             throw new RuntimeException("Cannot create an employee with Id of 0.");
         }
-        if(employee.getFname() == "" || employee.getLname() == "")
+        if(employee.getFname().equals("") || employee.getLname().equals(""))
         {
             throw new RuntimeException("Cannot set the name of an employee to nothing.");
         }

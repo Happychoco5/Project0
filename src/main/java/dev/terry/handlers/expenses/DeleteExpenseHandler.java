@@ -22,7 +22,7 @@ public class DeleteExpenseHandler implements Handler {
                 ctx.result("Successfully deleted expense with ID: " + id);
             }
             else {
-                ctx.status(400);
+                ctx.status(422);
                 ctx.result("Unable to delete the expense specified because it has already been APPROVED or DENIED.");
             }
         }

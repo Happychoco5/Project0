@@ -15,21 +15,21 @@ import java.sql.Statement;
 public class EmployeePostgresTests {
     static EmployeeDAO employeeDAO = new EmployeeDAOPostgres();
 
-    @BeforeAll
-    static void setup(){
-        try(Connection conn = ConnectionUtil.createConnection()){
-            String sql = "create table employee(\n" +
-                    "\tid serial primary key,\n" +
-                    "\tfName varchar(50) not null,\n" +
-                    "\tlName varchar(50) not null\n" +
-                    ");";
-            Statement statement = conn.createStatement();
-            statement.execute(sql);
-        }catch(SQLException e)
-        {
-            e.printStackTrace();
-        }
-    }
+//    @BeforeAll
+//    static void setup(){
+//        try(Connection conn = ConnectionUtil.createConnection()){
+//            String sql = "create table employee(\n" +
+//                    "\tid serial primary key,\n" +
+//                    "\tfName varchar(50) not null,\n" +
+//                    "\tlName varchar(50) not null\n" +
+//                    ");";
+//            Statement statement = conn.createStatement();
+//            statement.execute(sql);
+//        }catch(SQLException e)
+//        {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Test
     @Order(1)

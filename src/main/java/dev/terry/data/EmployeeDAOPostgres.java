@@ -70,7 +70,8 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
             ResultSet rs = preparedStatement.executeQuery();
 
             if(!rs.next()){
-                throw new ResourceNotFoundException("Could not find employee with id " + id);
+                return null;
+                //throw new ResourceNotFoundException("Could not find employee with id " + id);
             }
 
             Employee employee1 = new Employee();
@@ -78,6 +79,7 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
             employee1.setFname(rs.getString("fName"));
             employee1.setLname(rs.getString("lName"));
 
+            System.out.println("The employee with the id: " + employee1.getId());
             return employee1;
         }
         catch(SQLException e)

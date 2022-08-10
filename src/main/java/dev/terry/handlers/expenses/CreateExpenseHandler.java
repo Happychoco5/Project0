@@ -15,17 +15,17 @@ public class CreateExpenseHandler implements Handler {
 
         Expense expense = gson.fromJson(json, Expense.class);
 
-        for(Expense e : App.expenseService.getAllExpenses())
-        {
-            //Check to make sure the expense with ID does not exist.
-            if(e.getId() == expense.getId())
-            {
-                //Expense already exists
-                ctx.status(400);
-                ctx.result("Could not create expense with ID: " + expense.getId() + " because one already exists with that ID");
-                return;
-            }
-        }
+//        for(Expense e : App.expenseService.getAllExpenses())
+//        {
+//            //Check to make sure the expense with ID does not exist.
+//            if(e.getId() == expense.getId())
+//            {
+//                //Expense already exists
+//                ctx.status(400);
+//                ctx.result("Could not create expense with ID: " + expense.getId() + " because one already exists with that ID");
+//                return;
+//            }
+//        }
 
         if(App.employeeService.getEmployeeById(expense.getEmployeeId()) == null)
         {

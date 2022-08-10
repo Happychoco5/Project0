@@ -33,13 +33,13 @@ public class UpdateExpenseByIDHandler implements Handler {
                     }
                 }
                 else {
-                    ctx.status(400);
+                    ctx.status(422);
                     ctx.result("Cannot modify because this expense has already been APPROVED or DENIED");
                 }
             }
             else {
                 ctx.status(400);
-                ctx.result("Employee ID mismatch. Cannot update expense with " + expense.getEmployeeId() + " because ID inputted is " + expense.getId());
+                ctx.result("Employee ID mismatch. Cannot update expense with " + expense.getEmployeeId() + " because employee doesn't exist.");
             }
 
         }

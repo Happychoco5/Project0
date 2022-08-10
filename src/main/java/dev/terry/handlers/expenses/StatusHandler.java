@@ -15,25 +15,26 @@ public class StatusHandler implements Handler {
         if(App.expenseService.getExpenseWithId(id) != null)
         {
             Expense expense = App.expenseService.getExpenseWithId(id);
+            System.out.println(App.expenseService.getExpenseWithId(id));
 
-            if(expense.getStatus().equals("PENDING"))
+            if(expense.getStatus().name().equals("PENDING"))
             {
                 //Execute code
                 if(ctx.path().toLowerCase().contains("approve"))
                 {
                     //We approve the expense.
                     SetStatus(expense, Status.APPROVED);
-                    ctx.result("Successfully set expense " + expense.getId() + " to status APPROVED.");
+                    ctx.result("Successfully set expense with ID: " + expense.getId() + " to status APPROVED.");
                 }
                 else if(ctx.path().toLowerCase().contains("deny")){
                     //We deny the expense
                     SetStatus(expense, Status.DENIED);
-                    ctx.result("Successfully set expense " + expense.getId() + " to status DENIED.");
+                    ctx.result("Successfully set expense with ID: " + id + " to status DENIED.");
                 }
             }
             else
             {
-                ctx.status(400);
+                ctx.status(422);
                 ctx.result("This status is already approved or denied. Unable to modify.");
             }
 
